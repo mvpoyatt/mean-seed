@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="col col-md-4"></div>
+  <div class="col col-md-4">
+
+  <div class="well well-lg form-container">
+    <h3 class="text-center">Register</h3>
+
+    <form [formGroup]="regForm" (submit)="onSubmit()">
+      <div class="form-group">
+        <input formControlName="name" 
+              class="form-control"
+              type="text" 
+              placeholder="Username"
+              (blur)="nameDirty = true">
+        <small [hidden]="regForm.controls.name.valid || !nameDirty">
+          Required Field
+        </small>
+      </div>
+
+      <div class="form-group">
+        <input formControlName="email" 
+              class="form-control"
+              type="text" 
+              placeholder="Email"
+              (blur)="emailDirty = true">
+        <small [hidden]="regForm.controls.email.valid || !emailDirty">
+          Please enter a valid email address
+        </small>
+      </div>
+
+      <div formGroupName="passwords">
+        <div class="form-group">
+          <input formControlName="password" 
+                class="form-control"
+                type="password" 
+                placeholder="Password"
+                (blur)="passwordDirty = true">
+          <small [hidden]="regForm.controls.passwords.controls.password.valid || !passwordDirty">
+            Password must be at least 7 characters
+          </small>
+        </div>
+        <div class="form-group">
+          <input formControlName="confirmPwd" 
+                class="form-control"
+                type="password" 
+                placeholder="Confirm Password"
+                (blur)="confirmPwdDirty = true">
+          <small [hidden]="regForm.controls.passwords.valid || !confirmPwdDirty">
+            Passwords do not match
+          </small>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block"
+              type="submit" [disabled]="!regForm.valid">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  </div>
+  <div class="col col-md-4"></div>
+</div>

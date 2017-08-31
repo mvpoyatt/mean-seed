@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="col col-md-4"></div>
+
+  <div class="col col-md-4">
+    <div class="well well-lg form-container">
+      <h3 class="text-center">Login</h3>
+
+      <form [formGroup]="loginForm" (submit)="onSubmit()">
+        <div class="form-group">
+          <input formControlName="email" 
+                 class="form-control"
+                 type="text" 
+                 placeholder="Email"
+                 (blur)="emailDirty = true">
+          <small [hidden]="loginForm.controls.email.valid || !emailDirty">
+            Please enter a valid email address
+          </small>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="password" 
+                 class="form-control"
+                 type="password"
+                 placeholder="Password"
+                 (blur)="passwordDirty = true">
+          <small [hidden]="loginForm.controls.password.valid || !passwordDirty">
+            Required Field
+          </small>
+        </div>
+
+        <button class="btn btn-primary btn-block"
+                type="submit" [disabled]="!loginForm.valid">
+          Continue
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="col col-md-4"></div>
+</div>
