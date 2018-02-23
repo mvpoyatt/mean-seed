@@ -14,10 +14,10 @@ export class LoginService {
     return new Promise((resolve, reject) => {
       this.http.post('/auth/login', user)
         .map((res: Response) => res.json())
-        .subscribe((user: User) => {
+        .subscribe((User: User) => {
           if (user) {
             this._user = user;
-            resolve(user);
+            resolve(User);
           } else {
             reject('Invalid email or password');
           }
