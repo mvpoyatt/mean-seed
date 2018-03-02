@@ -12,7 +12,7 @@ export class RegistrationService {
 
   sendRequest(user: User): Promise<User> {
     return new Promise((resolve, reject) => {
-      this.http.post('/auth/register', user)
+      this.http.post('auth/register', user)
         .map((res: Response) => res.json())
         .subscribe(
           (res) => {

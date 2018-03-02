@@ -3,8 +3,11 @@ var User = require('./models/user');
 
 // Routes
 module.exports = function(app) {
-  app.post('/auth/register', register);
-  app.post('/auth/login', passport.authenticate('local'), login);
+  app.post('/auth/register', register)
+  app.post('/auth/login', passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/auth/login'
+  }));
 };
 
 login = function(req, res) {
@@ -12,12 +15,12 @@ login = function(req, res) {
 }
 
 register = function(req, res) {
-  name = req.body.username;
+  username = req.body.username;
   email = req.body.email;
   password = req.body.password;
-  console.log(name, email, password);
+  console.log(username, email, password);
 
-  User.register({username:name, email: email}, password, function(err, user) {
+  User.register({username: username, email: email}, password, function(err, user) {
     if (err) { 
       res.status(504).json(err.message); 
       return;
